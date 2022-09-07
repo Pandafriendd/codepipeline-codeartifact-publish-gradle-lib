@@ -36,7 +36,7 @@ publishing {
     }
     repositories {
         maven {
-            url 'https://apg-772345236255.d.codeartifact.us-east-1.amazonaws.com/maven/APG_Artifact_Repo_lizhiyua/'
+            url 'https://{your_codeartifact_domain}-{aws_account_id}.d.codeartifact.{region}.amazonaws.com/maven/{library_name}/'
             credentials {
                 username "aws"
                 password System.env.CODEARTIFACT_AUTH_TOKEN
