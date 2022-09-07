@@ -1,0 +1,27 @@
+version: 0.2
+
+# env:
+#   parameter-store:
+#     CODEARTIFACT_AUTH_TOKEN: /codebuild/codeartifact_auth_token_2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto8
+      powershell: 7.2.4
+  pre_build:
+    commands:
+      - $Env:PATH = "C:/Program Files (x86)/Amazon Corretto/jdk1.8.0_332/bin;$Env:PATH"
+      - $env:CODEARTIFACT_AUTH_TOKEN = aws codeartifact get-authorization-token --domain apg --domain-owner 772345236255 --query authorizationToken --output text
+      - echo $env:CODEARTIFACT_AUTH_TOKEN
+      - echo $env:CODEBUILD_BUILD_NUMBER
+      - echo $env:CODEBUILD_BUILD_ID
+  build:
+    commands:
+      - ./gradlew --version
+      - ./gradlew clean
+      - ./gradlew build
+  post_build:
+    commands:
+      - ./gradlew publish
+      
