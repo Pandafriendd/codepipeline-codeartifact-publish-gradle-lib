@@ -30,7 +30,7 @@ publishing {
         mavenJava(MavenPublication) {
             groupId = 'my-gradle-test'
             artifactId = 'master'
-            version = '5.1.7'
+            version = '0.0.1'
             from components.java
         }
     }
