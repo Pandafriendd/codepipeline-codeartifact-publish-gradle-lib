@@ -22,6 +22,6 @@ phases:
   post_build:
     commands:
       - |
-        $env:CODEARTIFACT_AUTH_TOKEN = aws codeartifact get-authorization-token --domain apg --domain-owner <YOUR_DOMAIN_ACCOUNT_ID> --query authorizationToken --output text
+        $env:CODEARTIFACT_AUTH_TOKEN = aws codeartifact get-authorization-token --domain <YOUR_DOMAIN_NAME> --domain-owner <YOUR_DOMAIN_ACCOUNT_ID> --query authorizationToken --output text
         ./gradlew publish
       
