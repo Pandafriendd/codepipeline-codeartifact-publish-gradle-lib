@@ -33,7 +33,7 @@ module "cicd_infra" {
   codecommit_repo_name = "App_Repo_Demoo"
   build_project_name = "Build_Demo"
   pipeline_name = "Pipeline_Demo"
-  domain_name = "Demo"
+  domain_name = "demo"
 }
 ```
 
