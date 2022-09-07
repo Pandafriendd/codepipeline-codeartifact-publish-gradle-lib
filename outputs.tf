@@ -6,6 +6,6 @@ output "clone_repo_ssh" {
   value = "${module.cicd_infra.repo_ssh}"
 }
 
-output "artifact_bucket" {
-  value = "${module.cicd_infra.artifact_bucket}"
+output "codeartifact_repository_endpoint" {
+  value = "${module.cicd_infra.codeartifact_repository_endpoint}"
 }
