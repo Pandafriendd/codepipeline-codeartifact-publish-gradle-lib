@@ -1,14 +1,14 @@
 # Automated Pipeline to Publish Java Libraries to a CodeArtifact Repo
 This POC uses Terraform to provision a AWS CodeCommit repository integrated with AWS CodePipeline and CodeBuild, which demonstrates an automated pipeline for publishing Java Libraries to CodeArtifact repositories.
 
-CodeArtifact will act as a central Java artifact repository so that other teams can use the them as dependencies for applications they are building
+CodeArtifact will act as a central Java artifact repository so that other teams can use the them as dependencies for applications they are building.
 
 The CodePipeline consists of two stages:
 
 1. A Source stage that is fed by the CodeCommit repository.
-2. A Build stage that builds and publishes the Java library to CodeArtifact repository via CodeBuild
+2. A Build stage that builds and publishes the Java library to CodeArtifact repository via CodeBuild.
 
-The POC's architecture diagram is shown below.
+The POC's architecture diagram is shown below:
 
 ![Architecture](images/architecture.png)
 
