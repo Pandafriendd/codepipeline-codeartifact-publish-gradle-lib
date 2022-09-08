@@ -30,13 +30,14 @@ publishing {
         mavenJava(MavenPublication) {
             groupId = 'my-gradle-test'
             artifactId = 'master'
-            version = '0.0.1'
+            version = System.env.CODEBUILD_BUILD_NUMBER
             from components.java
         }
     }
     repositories {
         maven {
-            url 'https://{your_codeartifact_domain}-{aws_account_id}.d.codeartifact.{region}.amazonaws.com/maven/{library_name}/'
+            // url 'https://{your_codeartifact_domain}-{aws_account_id}.d.codeartifact.{region}.amazonaws.com/maven/{library_name}/'
+            url System.env.CODEARTIFACT_REPO_URL
             credentials {
                 username "aws"
                 password System.env.CODEARTIFACT_AUTH_TOKEN

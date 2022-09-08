@@ -172,6 +172,16 @@ resource "aws_codebuild_project" "build-project" {
     compute_type = var.build_compute_type
     image        = var.build_image
     type         = var.build_type
+
+    environment_variable {
+      name  = "CODEARTIFACT_DOMAIN_NAME"
+      value = aws_codeartifact_domain.codeartifact-domain.domain
+    }
+
+    environment_variable {
+      name  = "CODEARTIFACT_OWNER_ACCOUNT"
+      value = aws_codeartifact_domain.codeartifact-domain.owner
+    }
   }
 
   source {
