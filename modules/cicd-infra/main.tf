@@ -182,6 +182,11 @@ resource "aws_codebuild_project" "build-project" {
       name  = "CODEARTIFACT_OWNER_ACCOUNT"
       value = aws_codeartifact_domain.codeartifact-domain.owner
     }
+
+    environment_variable {
+      name  = "CODEARTIFACT_REPO_URL"
+      value = data.aws_codeartifact_repository_endpoint.codeartifact-endpoint.repository_endpoint
+    }
   }
 
   source {
