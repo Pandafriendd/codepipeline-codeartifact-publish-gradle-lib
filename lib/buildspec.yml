@@ -12,8 +12,8 @@ phases:
   pre_build:
     commands:
       - $Env:PATH = "C:/Program Files (x86)/Amazon Corretto/jdk1.8.0_332/bin;$Env:PATH"
-      - echo $env:CODEBUILD_BUILD_NUMBER
-      - echo $env:CODEBUILD_BUILD_ID
+      - echo $Env:CODEBUILD_BUILD_NUMBER
+      - echo $Env:CODEBUILD_BUILD_ID
       - Get-ChildItem Env:CODEBUILD*
       - Get-ChildItem Env:CODEARTIFACT*
   build:
@@ -24,6 +24,6 @@ phases:
   post_build:
     commands:
       - |
-        $env:CODEARTIFACT_AUTH_TOKEN = aws codeartifact get-authorization-token --domain ${Env:CODEARTIFACT_DOMAIN_NAME} --domain-owner ${Env:CODEARTIFACT_OWNER_ACCOUNT} --query authorizationToken --output text
+        $Env:CODEARTIFACT_AUTH_TOKEN = aws codeartifact get-authorization-token --domain ${Env:CODEARTIFACT_DOMAIN_NAME} --domain-owner ${Env:CODEARTIFACT_OWNER_ACCOUNT} --query authorizationToken --output text
         ./gradlew publish
       
