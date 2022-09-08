@@ -30,7 +30,7 @@ module "cicd_infra" {
 
   aws_region = "us-east-2"
   codeartifact_repository_name = "Artifact_Repo_Demo"
-  codecommit_repo_name = "App_Repo_Demoo"
+  codecommit_repo_name = "App_Repo_Demo"
   build_project_name = "Build_Demo"
   pipeline_name = "Pipeline_Demo"
   domain_name = "demo"
@@ -47,44 +47,11 @@ terraform apply
 ## Commit the Java Example Library Source Code to the CodeCommit Repo
 Once Terraform provisioned the infrastructure resources, you can commit the sample Java code to trigger the Pipeline. 
 
-The above steps should have provisioned a CodeCommit repository and a CodeArtifact repository, but they are empty. So we need to get the CodeCommit Repo clone URL and CodeArtifact Repo endpoint created from the last step, which will be used later for hosting the library's source code and the library itself after build. These values can be retrieved from the Terraform's outputs.
+The above steps should have provisioned a CodeCommit repository and a CodeArtifact repository, but they are both empty. So now we need to push the sample Java library code to the CodeCommit repo so that the pipeline can be triggered to publish the library.
+
 
 ```
 cd lib
-```
-
-Edit `build.gradle`'s `url` config to point to the artifact repo endpoint you created, for example, `https://{your_codeartifact_domain}-{aws_account_id}.d.codeartifact.{region}.amazonaws.com/maven/{library_name}/`:
-
-```
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            groupId = 'my-gradle-test'
-            artifactId = 'master'
-            version = '0.0.1'
-            from components.java
-        }
-    }
-    repositories {
-        maven {
-            url 'https://{your_codeartifact_domain}-{aws_account_id}.d.codeartifact.{region}.amazonaws.com/maven/{library_name}/'
-            credentials {
-                username "aws"
-                password System.env.CODEARTIFACT_AUTH_TOKEN
-            }
-        }
-    }
-}
-```
-
-Change the `<YOUR_DOMAIN_NAME>` and `<YOUR_ACCOUNT_ID>` in `buildspec.yml` file according to yours in below section:
-
-```yaml
-post_build:
-    commands:
-      - |
-        $env:CODEARTIFACT_AUTH_TOKEN = aws codeartifact get-authorization-token --domain <YOUR_DOMAIN_NAME> --domain-owner <YOUR_ACCOUNT_ID> --query authorizationToken --output text
-        ./gradlew publish
 ```
 
 Commit the change to trigger the pipeline:

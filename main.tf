@@ -3,7 +3,7 @@ module "cicd_infra" {
 
   aws_region = "us-east-2"
   codeartifact_repository_name = "Artifact_Repo_Demo"
-  codecommit_repo_name = "App_Repo_Demoo"
+  codecommit_repo_name = "App_Repo_Demo"
   build_project_name = "Build_Demo"
   pipeline_name = "Pipeline_Demo"
   domain_name = "demo"
