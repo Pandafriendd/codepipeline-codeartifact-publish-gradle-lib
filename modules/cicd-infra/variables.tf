@@ -34,6 +34,10 @@ variable "build_type" {
   default = "WINDOWS_SERVER_2019_CONTAINER"
 }
 
+variable "buildspec_location" {
+  default = "./buildspec.yml"
+}
+
 variable "pipeline_name" {
   default = "APG_Pipeline"
 }

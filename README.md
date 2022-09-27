@@ -37,6 +37,23 @@ module "cicd_infra" {
 }
 ```
 
+The `cicd-infra` module includes below variables and default values, you can override them in the `main.tf` in the project root directory to fit your use case:
+
+Var Name | Default Value
+------------ | -------------
+aws_region | us-east-1
+domain_name | apg
+codeartifact_repository_name | APG_Artifact_Repo
+codecommit_repo_name | APG_App_Repo
+codecommit_repo_default_branch | master
+build_project_name | APG_Build
+build_compute_type | BUILD_GENERAL1_LARGE
+build_image | aws/codebuild/windows-base:2019-2.0
+build_type | WINDOWS_SERVER_2019_CONTAINER
+buildspec_location | ./buildspec.yml
+pipeline_name | APG_Pipeline
+
+
 3. Run below commends to deploy the infrastructure:
 
 ```bash
